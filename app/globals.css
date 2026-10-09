@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root { color-scheme: light; }
+html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
+body { @apply bg-white font-sans text-ink antialiased; overflow-x: hidden; }
+:focus-visible { outline: 2px solid #FF6903; outline-offset: 2px; }
+
+.backface-hidden { backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+
+/* Showcase 3D: pointer tilt (CSS vars) + gentle idle motion */
+.tilt-wrap {
+  transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
+  transition: transform 0.25s ease-out;
+}
+.tilt-obj { transform-style: preserve-3d; margin-inline: auto; }
+.sway { animation: sway 7s ease-in-out infinite; }
+.card-flip { transform-style: preserve-3d; animation: flip 10s ease-in-out infinite; }
+@keyframes sway { 0%,100% { transform: rotateY(-16deg); } 50% { transform: rotateY(16deg); } }
+@keyframes flip { 0%,38% { transform: rotateY(-14deg) rotateX(4deg); } 50%,88% { transform: rotateY(166deg) rotateX(4deg); } 100% { transform: rotateY(346deg) rotateX(4deg); } }
+
+/* Tap demo */
+@keyframes tapwave { 0% { opacity: .9; transform: scale(.6); } 100% { opacity: 0; transform: scale(1.8); } }
+.tap-wave { animation: tapwave 2.2s ease-out infinite; }
+.tap-wave:nth-child(2) { animation-delay: .7s; }
+@keyframes phonebob { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-14px); } }
+.phone-bob { animation: phonebob 2.8s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .sway, .card-flip, .tap-wave, .phone-bob { animation: none !important; }
+  .card-flip { transform: rotateY(-10deg); }
+  .tilt-wrap { transition: none; }
+}
