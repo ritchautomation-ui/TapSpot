@@ -5,15 +5,16 @@
 export const storeConfig = {
   brandName: "TapSpot",
   tagline: "NFC solutions for local businesses",
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL ?? "https://tapspot.example.com",
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3107",
+  serviceArea: process.env.NEXT_PUBLIC_SERVICE_AREA || "",
   currency: { code: "PHP", symbol: "₱", locale: "en-PH" },
 
   // TODO: replace with your real details
   contact: {
-    email: "hello@tapspot.example.com",
-    phone: "", // e.g. "0917 000 0000" (leave empty to hide)
-    facebookUrl: "https://facebook.com/", // your TapSpot Facebook page
-    messengerUrl: "https://m.me/", // e.g. https://m.me/yourpagename
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
+    phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "",
+    facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
+    messengerUrl: process.env.NEXT_PUBLIC_MESSENGER_URL || "",
     supportHours: "", // e.g. "Mon–Sat, 9:00 AM – 6:00 PM"
   },
 

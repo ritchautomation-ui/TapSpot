@@ -5,7 +5,7 @@ import { getProduct } from "@/data/products";
 import { formatPrice } from "@/lib/format";
 import type { CartLine } from "@/lib/types";
 import { useCart } from "./CartProvider";
-import { ProductVisual } from "./ProductVisual";
+import { ProductArtwork } from "./ProductArtwork";
 import { QuantitySelector } from "./QuantitySelector";
 
 export function CartLineItem({ line, onNavigate }: { line: CartLine; onNavigate?: () => void }) {
@@ -19,7 +19,7 @@ export function CartLineItem({ line, onNavigate }: { line: CartLine; onNavigate?
   return (
     <li className="flex gap-4 py-5">
       <div className="h-24 w-24 shrink-0 overflow-hidden rounded-2xl bg-paper ring-1 ring-line">
-        <ProductVisual visual={product.visual} className="h-full w-full" />
+        <ProductArtwork product={product} className="h-full w-full" />
       </div>
       <div className="min-w-0 flex-1">
         <div className="flex items-start justify-between gap-3">
@@ -42,3 +42,4 @@ export function CartLineItem({ line, onNavigate }: { line: CartLine; onNavigate?
     </li>
   );
 }
+

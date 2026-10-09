@@ -29,6 +29,8 @@ export interface Product {
   available: boolean;
   featured: boolean;
   visual: ProductVisualKey;
+  /** Tile in the original six-product artwork, used only by the showcase. */
+  showcaseTile?: number;
   images: { src: string; alt: string; width: number; height: number }[];
   includes: string[];
   benefits: { title: string; body: string }[];

@@ -26,9 +26,10 @@ export function CartPage() {
       <aside className="h-fit space-y-5 rounded-3xl bg-paper p-6 ring-1 ring-line">
         <DiscountBox />
         <TotalsTable totals={totals} />
-        <ButtonLink href="/checkout" className="w-full">Checkout</ButtonLink>
+        <ButtonLink href="/checkout" className="w-full">Send order request</ButtonLink>
         <Link href="/products" className="block text-center text-sm font-medium underline-offset-2 hover:underline">Continue shopping</Link>
       </aside>
     </div>
   );
 }
+

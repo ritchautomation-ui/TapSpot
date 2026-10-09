@@ -1,4 +1,6 @@
 import Link from "next/link";
+import { ContactSection } from "@/components/ContactSection";
+import { GrowthPackage } from "@/components/GrowthPackage";
 import { BusinessCardSection } from "@/components/BusinessCardSection";
 import { FaqList } from "@/components/FaqList";
 import { Hero } from "@/components/Hero";
@@ -25,6 +27,7 @@ export default function HomePage() {
       <HowItWorks />
       <TapDemo />
       <BusinessCardSection />
+      <GrowthPackage />
       <UseCases />
       <Testimonials />
       <section className="bg-white py-20 sm:py-24">
@@ -37,6 +40,7 @@ export default function HomePage() {
         </Container>
       </section>
       <ResellerCTA />
+      <ContactSection />
     </>
   );
 }

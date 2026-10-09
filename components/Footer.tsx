@@ -18,10 +18,10 @@ export function Footer() {
         <FooterCol title="Learn" items={[["How it works", "/how-it-works"], ["FAQ", "/faq"], ["Become a reseller", "/resellers"]]} />
         <div>
           <h3 className="text-sm font-semibold text-white">Contact</h3>
-          <ul className="mt-4 space-y-2.5 text-sm text-white/70">
-            <li><a className="hover:text-white" href={c.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook</a></li>
-            <li><a className="hover:text-white" href={c.messengerUrl} target="_blank" rel="noopener noreferrer">Messenger</a></li>
-            <li><a className="hover:text-white" href={`mailto:${c.email}`}>{c.email}</a></li>
+          <ul className="mt-4 space-y-2.5 text-sm text-white/70"><li><Link href="/contact" className="hover:text-white">Talk to TapSpot</Link></li>
+            {c.facebookUrl && <li><a className="hover:text-white" href={c.facebookUrl} target="_blank" rel="noopener noreferrer">Facebook</a></li>}
+            {c.messengerUrl && <li><a className="hover:text-white" href={c.messengerUrl} target="_blank" rel="noopener noreferrer">Messenger</a></li>}
+            {c.email && <li><a className="hover:text-white" href={`mailto:${c.email}`}>{c.email}</a></li>}
             {c.phone && <li><a className="hover:text-white" href={`tel:${c.phone.replace(/\s/g, "")}`}>{c.phone}</a></li>}
           </ul>
         </div>
@@ -48,3 +48,5 @@ function FooterCol({ title, items }: { title: string; items: [string, string][] 
     </div>
   );
 }
+
+

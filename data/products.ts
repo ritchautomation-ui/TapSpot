@@ -67,6 +67,7 @@ export const products: Product[] = [
     available: true,
     featured: true,
     visual: "google",
+    showcaseTile: 0,
     images: [
       { src: "/images/standee-google.jpg", alt: "TapSpot NFC Google Review display on a counter", width: 360, height: 530 },
       { src: "/images/hero-scene.jpg", alt: "Customer tapping a phone on a TapSpot display to open a Google review page", width: 1175, height: 725 },
@@ -105,6 +106,7 @@ export const products: Product[] = [
     available: true,
     featured: true,
     visual: "facebook",
+    showcaseTile: 1,
     images: [
       { src: "/images/standee-facebook.jpg", alt: "TapSpot NFC Facebook display on a counter", width: 330, height: 530 },
       { src: "/images/hero-scene.jpg", alt: "TapSpot NFC displays on a café counter", width: 1175, height: 725 },
@@ -250,10 +252,10 @@ const futureStub = (id: string, name: string, category: Product["category"]): Pr
 });
 
 export const futureProducts: Product[] = [
-  futureStub("instagram", "NFC Instagram", "social"),
-  futureStub("tiktok", "NFC TikTok", "social"),
-  futureStub("menu", "NFC Menu", "menu"),
-  futureStub("services", "NFC Services", "services"),
+  { ...futureStub("instagram", "NFC Instagram", "social"), shortName: "Instagram", showcaseTile: 2, tagline: "Make it easier for customers to follow your Instagram." },
+  { ...futureStub("tiktok", "NFC TikTok", "social"), shortName: "TikTok", showcaseTile: 3, tagline: "Connect customers with your latest TikTok content." },
+  { ...futureStub("menu", "NFC Menu", "menu"), shortName: "Menu", showcaseTile: 4, tagline: "Put your menu one tap away." },
+  { ...futureStub("services", "NFC Services", "services"), shortName: "Services", showcaseTile: 5, tagline: "Help customers explore what you offer." },
   futureStub("booking", "NFC Booking", "booking"),
 ];
 
@@ -264,3 +266,8 @@ export const getProduct = (idOrSlug: string): Product | undefined =>
 
 export const availableProducts = (): Product[] => all.filter((p) => p.available);
 export const featuredProducts = (): Product[] => all.filter((p) => p.available && p.featured);
+
+/** Preview the range without changing purchasing availability. */
+export const showcaseProducts = (): Product[] => all
+  .filter((p) => p.showcaseTile !== undefined)
+  .sort((a, b) => a.showcaseTile! - b.showcaseTile!);

@@ -1,4 +1,4 @@
-import { storeConfig } from "@/config/store";
+
 import { ButtonLink, Container } from "./ui";
 
 export function ResellerCTA() {
@@ -11,7 +11,7 @@ export function ResellerCTA() {
             <p className="mt-2 text-white/70">Let's talk.</p>
           </div>
           <div className="flex flex-col gap-3 sm:flex-row">
-            <ButtonLink href={storeConfig.contact.messengerUrl} external variant="primary">Message us</ButtonLink>
+            <ButtonLink href="/contact" variant="primary">Message us</ButtonLink>
             <ButtonLink href="/resellers" variant="onDark">Learn more</ButtonLink>
           </div>
         </div>
@@ -19,3 +19,4 @@ export function ResellerCTA() {
     </section>
   );
 }
+

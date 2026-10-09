@@ -12,6 +12,7 @@ const links = [
   { href: "/how-it-works", label: "How it works" },
   { href: "/business-card", label: "Business card" },
   { href: "/faq", label: "FAQ" },
+  { href: "/contact", label: "Contact" },
 ];
 
 function CartIcon() {

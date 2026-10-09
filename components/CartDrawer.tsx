@@ -5,7 +5,7 @@ import { useEffect, useRef } from "react";
 import { useCart } from "./CartProvider";
 import { CartLineItem } from "./CartLineItem";
 import { TotalsTable } from "./TotalsTable";
-import { ButtonLink } from "./ui";
+
 
 export function CartDrawer() {
   const { drawerOpen, closeDrawer, lines, totals, ready } = useCart();
@@ -58,7 +58,7 @@ export function CartDrawer() {
             </ul>
             <div className="space-y-4 border-t border-line bg-paper px-5 py-5">
               <TotalsTable totals={totals} />
-              <ButtonLink href="/checkout" className="w-full" variant="primary">Checkout</ButtonLink>
+              <Link href="/checkout" onClick={closeDrawer} className="flex min-h-12 items-center justify-center rounded-full bg-brand font-semibold text-ink">Send order request</Link>
               <div className="flex justify-between text-sm">
                 <button type="button" onClick={closeDrawer} className="font-medium underline-offset-2 hover:underline">Continue shopping</button>
                 <Link href="/cart" onClick={closeDrawer} className="font-medium underline-offset-2 hover:underline">View full cart</Link>
@@ -70,3 +70,4 @@ export function CartDrawer() {
     </div>
   );
 }
+

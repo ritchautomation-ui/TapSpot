@@ -67,7 +67,7 @@ export function OrderConfirmation() {
           <div className="mt-4 flex flex-col gap-3 sm:flex-row">
             <ButtonLink external href={`mailto:${c.email}?subject=${encodeURIComponent(`Order ${order.orderNumber}`)}&body=${encodeURIComponent(text)}`} variant="primary">Email order to TapSpot</ButtonLink>
             <Button variant="dark" onClick={copy}>{copied ? "Copied" : "Copy order summary"}</Button>
-            <ButtonLink external href={c.messengerUrl} variant="outline">Open Messenger</ButtonLink>
+            <ButtonLink href="/contact" variant="outline">Open Messenger</ButtonLink>
           </div>
         </div>
       )}
@@ -109,8 +109,9 @@ export function OrderConfirmation() {
 
       <div className="mt-8 flex flex-col gap-3 sm:flex-row">
         <ButtonLink href="/products" variant="dark">Continue shopping</ButtonLink>
-        <ButtonLink external href={c.messengerUrl} variant="outline">Contact TapSpot</ButtonLink>
+        <ButtonLink href="/contact" variant="outline">Contact TapSpot</ButtonLink>
       </div>
     </div>
   );
 }
+

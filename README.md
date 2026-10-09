@@ -1,48 +1,70 @@
-# TapSpot website
+# TapSpot — GitHub and Vercel setup
 
-A Next.js (App Router) + TypeScript + Tailwind store for TapSpot NFC products: home page with a rotating 3D product showcase, product pages with setup forms, cart, checkout and order confirmation. It runs without a database.
+This is the latest complete source: rotating showcase, matching product artwork, digital card packages and samples, growth bundle, contact page, and direct Messenger/email/SMS inquiries.
 
-## Run it on your computer
-1. Install Node.js 20 or newer.
-2. In this folder run `npm install`, then `npm run dev`.
-3. Open http://localhost:3000.
+## 1. Add your contacts
 
-Checks: `npm run build`, `npm run lint`, `npx tsc --noEmit`.
+Edit config/store.ts. Replace the empty fallback strings after `||` with your real details, for example your email, phone, Facebook page, Messenger link and service area. You can alternatively set the NEXT_PUBLIC_* variables listed in .env.example in Vercel.
 
-## Change things (no UI code needed)
-| What | File |
-|---|---|
-| Prices, product text, on/off (`available`), setup fields | `data/products.ts` |
-| Business card price | `data/products.ts` → `nfc-business-card` → set `price: 799` (any number). Until then the page shows "Price on request" |
-| Brand name, email, phone, Facebook, Messenger, processing time | `config/store.ts` |
-| Shipping fee, free-shipping threshold | `config/shipping.ts` |
-| Payment methods (GCash, Maya, bank, COD on/off) | `config/checkout.ts` |
-| Discount codes | `config/discounts.ts` |
-| FAQ | `data/faq.ts` |
-| Testimonials (real ones only), then set `showTestimonials: true` | `data/testimonials.ts`, `config/store.ts` |
-| Images | `public/images/` |
+Set NEXT_PUBLIC_SITE_URL to your real HTTPS Vercel URL or custom domain. This is used by metadata and the sitemap. Redeploy after changing environment variables.
 
-Placeholders to replace before launch: contact details in `config/store.ts`, the shipping fee (currently ₱150), and the business card price.
+Contact links only appear when configured. Messenger inquiries require the customer to copy the prepared message, open Messenger and send it. No order is automatically confirmed and no payment is taken on this website.
 
-## Add a product
-Copy an entry in `data/products.ts`, give it a new `id` and `slug`, set `available: true`. Instagram, TikTok, Menu, Services and Booking already exist as hidden entries (`futureProducts`). Fill them in and switch `available` on.
+## 2. Review your offers
 
-## How orders work (important)
-There is no database or payment gateway yet.
-- Checkout calls `lib/services/orderService.ts`, which POSTs to `/api/orders`.
-- If you set `ORDER_WEBHOOK_URL` (Make, Zapier, n8n, Google Apps Script, Discord/Slack), the order is forwarded there and the customer sees "Order received."
-- If not, the order is saved only in the customer's browser, and the confirmation page tells them to email or message the order summary to you. The site never claims TapSpot received an order when it didn't.
-- Payments are manual: customers pick GCash, Maya or bank transfer, and you message them the details. No card data is collected. To connect PayMongo/Xendit/Stripe later, see `lib/services/paymentService.ts`.
+- data/products.ts: NFC prices, product descriptions and availability.
+- data/packages.ts: Starter PHP998, Business PHP1698, Executive PHP3898.
+- The Google NFC + Facebook NFC + 5,000-follower package is quote-only. Set its price and actual service details before advertising a fixed-price offer.
+- config/store.ts: processing time, support hours and service area.
+- config/shipping.ts: delivery is confirmed by message.
+- config/discounts.ts: example discount codes are disabled.
 
-## Connect a backend later
-Edit `app/api/orders/route.ts` to insert the order into Supabase, Firebase or Postgres (Prisma). Also recompute prices on the server there (see `lib/pricing.ts`) so totals can't be tampered with. The rest of the site stays the same.
+The sample card pages are demos. They download a sample vCard and demonstrate page features; they are not live customer profiles.
 
-## Environment variables
-Copy `.env.example` to `.env.local`:
-- `ORDER_WEBHOOK_URL` (optional)
-- `NEXT_PUBLIC_SITE_URL` (your real domain, for SEO and share images)
+## 3. Upload to GitHub
 
-## Deploy to Vercel
-1. Push this folder to a GitHub repository.
-2. On vercel.com choose Add New → Project, import the repo, and keep the defaults.
-3. Add the environment variables above, then deploy.
+Extract the ZIP. Create a GitHub repository and upload the CONTENTS of the tapspot-vercel-ready folder. Put package.json directly in the repository root. Upload folders and hidden configuration files too, including .eslintrc.json and .gitignore.
+
+Do not upload the ZIP itself as your website source. Dependencies, build output and local environment files are excluded from this delivery.
+
+## 4. Import into Vercel
+
+Import that GitHub repository as a new Vercel project. Use:
+
+- Framework preset: Next.js
+- Root directory: repository root (the folder containing package.json)
+- Build command: npm run build
+- Install command: npm ci
+- Output directory: leave the Next.js default
+
+If you uploaded the enclosing folder rather than its contents, set Vercel's root directory to tapspot-vercel-ready instead.
+
+Add your NEXT_PUBLIC_* environment variables before the final production deployment. After Vercel gives you your domain, set NEXT_PUBLIC_SITE_URL to that HTTPS address and redeploy.
+
+Official instructions:
+- https://vercel.com/docs/frameworks/full-stack/nextjs
+- https://vercel.com/docs/environment-variables
+
+## Local checks
+
+Run from the folder containing package.json:
+
+    npm ci
+    npm run lint
+    npx tsc --noEmit
+    npm run build
+    npm run check:launch
+
+check:launch intentionally fails until you configure a real public HTTPS URL and at least one real contact method.
+
+To preview locally:
+
+    npm run dev
+
+## Verification completed
+
+Lint, TypeScript and production build passed. Browser checks passed for catalogue artwork, package pricing, product setup validation, cart-to-inquiry messages, retained cart, cart drawer navigation, all three sample pages, vCard downloads, growth-package inquiry and responsive layouts at 320/390/768/1440px. No browser page errors were observed.
+
+The earlier showcase was also checked for automatic rotation, hover/focus pause, keyboard controls, touch swipes, vertical scrolling and reduced motion.
+
+The source is prepared for Vercel deployment; actual delivery through your public contact accounts and the final public domain must be checked after you configure them.

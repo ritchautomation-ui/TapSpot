@@ -1,0 +1,45 @@
+.section { background: #000; color: #fff; padding: 88px 0 64px; overflow: hidden; }
+.heading { max-width: 680px; margin: 0 auto; text-align: center; padding: 0 24px; }
+.heading h2 { font-size: clamp(32px, 4.3vw, 48px); line-height: 1.08; letter-spacing: -.04em; font-weight: 700; text-wrap: balance; }
+.heading p { margin: 20px auto 0; color: #aaa; max-width: 480px; font-size: 17px; line-height: 1.6; text-wrap: balance; }
+.stage { position: relative; width: 100%; max-width: 1200px; margin: 32px auto 0; height: 408px; touch-action: pan-y pinch-zoom; user-select: none; }
+.wheel { position: absolute; inset: 0; perspective: 1100px; }
+.product { --travel: 390px; position: absolute; left: 50%; top: 50%; width: 352px; aspect-ratio: 1; transform: translate(-50%, -50%) translateX(calc(var(--x) * var(--travel))) translateY(calc((1 - var(--depth)) * -42px)) rotateY(var(--turn)) scale(var(--scale)); transition: transform 800ms cubic-bezier(.22,.68,.12,1), opacity 800ms ease; }
+.productTarget { display: block; width: 100%; border-radius: 28px; background: #000; -webkit-tap-highlight-color: transparent; }
+.product[data-active="true"] { filter: drop-shadow(0 22px 16px #0009); }
+.artwork { display: block; position: relative; width: 100%; aspect-ratio: 1; overflow: hidden; border-radius: 24px; opacity: var(--opacity, 1); transition: opacity 800ms ease; }
+.sheet { position: absolute; width: 300%; height: 200%; max-width: none; object-fit: contain; pointer-events: none; }
+.controls { display: flex; align-items: center; justify-content: center; gap: 18px; position: relative; width: fit-content; margin: 0 auto; }
+.arrow { width: 44px; height: 44px; border: 1px solid #ffffff40; border-radius: 50%; font-size: 20px; transition: border-color 160ms, color 160ms; }
+.arrow:hover { color: #ff6903; border-color: #ff6903; }
+.counter { font-size: 12px; font-variant-numeric: tabular-nums; letter-spacing: .12em; }
+.counter span { color: #888; margin-left: 5px; }
+.pause { position: absolute; left: calc(100% + 16px); font-size: 12px; color: #aaa; min-height: 44px; min-width: 44px; }
+.pause:hover { color: #ff6903; }
+.info { text-align: center; padding: 24px 24px 0; min-height: 210px; }
+.info h3 { font-size: 25px; line-height: 1.25; font-weight: 650; letter-spacing: -.025em; }
+.tagline { color: #aaa; font-size: 15px; line-height: 1.5; margin: 8px auto 0; max-width: 440px; min-height: 23px; }
+.price { margin-top: 14px; font-weight: 600; color: #ff6903; font-size: 17px; }
+.price span { color: #aaa; font-weight: 400; font-size: 13px; }
+.cta { display: inline-flex; gap: 24px; align-items: center; margin-top: 12px; padding: 8px 0; min-height: 44px; border-bottom: 1px solid #ffffff50; font-size: 14px; }
+.cta:hover { color: #ff6903; border-color: #ff6903; }
+.unavailable { display: inline-flex; align-items: center; margin-top: 12px; min-height: 44px; color: #888; font-size: 13px; }
+.selector { display: flex; justify-content: center; flex-wrap: wrap; max-width: 920px; margin: 18px auto 0; padding: 20px 20px 0; gap: 6px 20px; border-top: 1px solid #ffffff24; }
+.selector button { display: inline-flex; gap: 8px; align-items: center; min-height: 44px; font-size: 14px; color: #aaa; transition: color 160ms; }
+.selector button[aria-pressed="true"], .selector button:hover { color: #ff6903; }
+.dot { width: 5px; height: 5px; border-radius: 50%; border: 1px solid currentColor; }
+.selector button[aria-pressed="true"] .dot { background: currentColor; }
+.hint { text-align: center; color: #888; font-size: 12px; line-height: 1.5; padding: 0 24px; margin-top: 18px; }
+@media (max-width: 1023px) { .product { --travel: 31vw; width: 320px; } .stage { height: 370px; } }
+@media (max-width: 600px) {
+  .section { padding: 64px 0 48px; }
+  .heading p { font-size: 15px; }
+  .stage { height: 82vw; max-height: 360px; margin-top: 20px; }
+  .product { width: 68vw; --travel: 52vw; }
+  .info { min-height: 232px; }
+  .tagline { min-height: 45px; }
+  .selector { margin: 12px 24px 0; padding: 16px 0 0; gap: 0; display: grid; grid-template-columns: repeat(3, 1fr); }
+  .selector button { justify-content: center; font-size: 12px; gap: 6px; }
+  .pause { left: calc(100% + 8px); }
+}
+@media (prefers-reduced-motion: reduce) { .product { transition: opacity 120ms; } }

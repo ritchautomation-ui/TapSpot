@@ -1,15 +1,15 @@
 "use client";
 
-import Image from "next/image";
+
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
-import { storeConfig } from "@/config/store";
+
 import { formatPrice } from "@/lib/format";
 import { validateSetup, type Errors } from "@/lib/validation";
 import type { Product } from "@/lib/types";
 import { useCart } from "./CartProvider";
-import { ProductVisual } from "./ProductVisual";
+import { ProductArtwork } from "./ProductArtwork";
 import { QuantitySelector } from "./QuantitySelector";
 import { SetupForm } from "./SetupForm";
 import { Button, ButtonLink } from "./ui";
@@ -20,7 +20,7 @@ export function ProductDetail({ product }: { product: Product }) {
   const [qty, setQty] = useState(1);
   const [values, setValues] = useState<Record<string, string>>({});
   const [errors, setErrors] = useState<Errors>({});
-  const [view, setView] = useState(0); // 0 = illustrated visual, 1+ = photos
+
   const [added, setAdded] = useState(false);
 
   const purchasable = product.price !== null;
@@ -43,21 +43,7 @@ export function ProductDetail({ product }: { product: Product }) {
     <div className="grid gap-10 lg:grid-cols-2 lg:gap-14">
       <div className="lg:sticky lg:top-24 lg:self-start">
         <div className="overflow-hidden rounded-3xl bg-paper ring-1 ring-line">
-          {view === 0 ? (
-            <ProductVisual visual={product.visual} className="aspect-[4/3] w-full" />
-          ) : (
-            <Image src={product.images[view - 1].src} alt={product.images[view - 1].alt} width={product.images[view - 1].width} height={product.images[view - 1].height} className="aspect-[4/3] w-full object-contain" priority />
-          )}
-        </div>
-        <div className="mt-3 flex gap-3" role="group" aria-label="Product views">
-          <button type="button" onClick={() => setView(0)} aria-label="Show illustration" aria-pressed={view === 0} className={`h-16 w-20 overflow-hidden rounded-xl bg-paper ring-2 ${view === 0 ? "ring-brand" : "ring-line"}`}>
-            <ProductVisual visual={product.visual} className="h-full w-full" />
-          </button>
-          {product.images.map((img, i) => (
-            <button key={img.src + i} type="button" onClick={() => setView(i + 1)} aria-label={`Show photo ${i + 1}`} aria-pressed={view === i + 1} className={`h-16 w-20 overflow-hidden rounded-xl ring-2 ${view === i + 1 ? "ring-brand" : "ring-line"}`}>
-              <Image src={img.src} alt="" width={160} height={120} className="h-full w-full object-cover" />
-            </button>
-          ))}
+          <ProductArtwork product={product} className="aspect-[4/3] w-full" />
         </div>
       </div>
 
@@ -96,16 +82,16 @@ export function ProductDetail({ product }: { product: Product }) {
               )}
               <div className="mt-5 grid gap-3 sm:grid-cols-2">
                 <Button variant="dark" onClick={() => submit(false)}>{product.id === "google-facebook-bundle" ? "Add bundle to cart" : "Add to cart"}</Button>
-                <Button variant="primary" onClick={() => submit(true)}>{product.id === "google-facebook-bundle" ? "Get the bundle" : "Buy now"}</Button>
+                <Button variant="primary" onClick={() => submit(true)}>{product.id === "google-facebook-bundle" ? "Get the bundle" : "Prepare order"}</Button>
               </div>
               {added && <p className="mt-3 text-sm text-mute" aria-live="polite">Added. You can keep shopping or check out from your cart.</p>}
-              <p className="mt-4 text-sm text-mute">Total at checkout: {formatPrice((product.price ?? 0) * qty)} plus shipping.</p>
+              <p className="mt-4 text-sm text-mute">Product subtotal: {formatPrice((product.price ?? 0) * qty)} — delivery confirmed by message.</p>
             </>
           ) : (
             <div>
-              <h2 className="text-lg font-bold">Pricing is being finalized</h2>
-              <p className="mt-2 text-mute">Message us and we'll send you the price and what we need to set up your profile.</p>
-              <ButtonLink href={storeConfig.contact.messengerUrl} external className="mt-4 w-full sm:w-auto">Ask about pricing</ButtonLink>
+              <h2 className="text-lg font-bold">Choose your digital card package</h2>
+              <p className="mt-2 text-mute">Explore Starter, Business and Executive options, then message us to arrange your setup.</p>
+              <ButtonLink href="/business-card#card-packages" className="mt-4 w-full sm:w-auto">Explore packages</ButtonLink>
             </div>
           )}
         </div>
@@ -113,3 +99,5 @@ export function ProductDetail({ product }: { product: Product }) {
     </div>
   );
 }
+
+
