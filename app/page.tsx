@@ -4,17 +4,30 @@ import { GrowthPackage } from "@/components/GrowthPackage";
 import { BusinessCardSection } from "@/components/BusinessCardSection";
 import { FaqList } from "@/components/FaqList";
 import { Hero } from "@/components/Hero";
-import { HowItWorks, TapDemo } from "@/components/HowItWorks";
+import { HowItWorks } from "@/components/HowItWorks";
 import { ProductGrid } from "@/components/ProductGrid";
 import { ResellerCTA } from "@/components/ResellerCTA";
 import { RotatingShowcase } from "@/components/RotatingShowcase";
+import TapSpotDemo from "@/components/TapSpotDemo";
 import { Testimonials } from "@/components/Testimonials";
 import { UseCases } from "@/components/UseCases";
 import { Container } from "@/components/ui";
+import { storeConfig } from "@/config/store";
+
+const organizationJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: storeConfig.brandName,
+  url: storeConfig.siteUrl,
+  logo: `${storeConfig.siteUrl}/images/icon.png`,
+  description: "NFC review displays and digital business cards for local businesses in the Philippines.",
+  ...(storeConfig.contact.facebookUrl && { sameAs: [storeConfig.contact.facebookUrl] }),
+};
 
 export default function HomePage() {
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }} />
       <Hero />
       <RotatingShowcase />
       <section id="products" className="bg-white py-20 sm:py-24">
@@ -25,7 +38,7 @@ export default function HomePage() {
         </Container>
       </section>
       <HowItWorks />
-      <TapDemo />
+      <TapSpotDemo ctaHref="/products" ctaLabel="Shop NFC products" />
       <BusinessCardSection />
       <GrowthPackage />
       <UseCases />

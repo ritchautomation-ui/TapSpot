@@ -6,7 +6,7 @@ import { storeConfig } from "@/config/store";
 export function Logo({ className = "h-9", priority = false }: { className?: string; priority?: boolean }) {
   return (
     <Link href="/" aria-label={`${storeConfig.brandName} home`} className="inline-flex items-center rounded-lg">
-      <Image src="/images/logo.png" alt={storeConfig.brandName} width={1200} height={375} priority={priority} className={`${className} w-auto`} />
+      <Image src="/images/logo.png" alt={storeConfig.brandName} width={256} height={80} sizes="160px" priority={priority} className={`${className} w-auto`} />
     </Link>
   );
 }

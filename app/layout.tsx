@@ -5,6 +5,7 @@ import { storeConfig } from "@/config/store";
 import { CartProvider } from "@/components/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
+import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Navbar } from "@/components/Navbar";
 
 const title = "TapSpot | NFC Solutions for Local Businesses";
@@ -32,6 +33,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <Navbar />
           <main id="main">{children}</main>
           <Footer />
+          <MobileCtaBar />
           <CartDrawer />
         </CartProvider>
       </body>
