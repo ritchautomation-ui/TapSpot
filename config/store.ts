@@ -21,12 +21,13 @@ export const storeConfig = {
   serviceArea: process.env.NEXT_PUBLIC_SERVICE_AREA || "",
   currency: { code: "PHP", symbol: "₱", locale: "en-PH" },
 
-  // TODO: replace with your real details
+  // Env vars (Vercel) override the fallbacks below.
   contact: {
-    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "",
+    email: process.env.NEXT_PUBLIC_CONTACT_EMAIL || "tapspotpampanga@gmail.com",
     phone: process.env.NEXT_PUBLIC_CONTACT_PHONE || "",
-    facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || "",
-    messengerUrl: process.env.NEXT_PUBLIC_MESSENGER_URL || "",
+    facebookUrl: process.env.NEXT_PUBLIC_FACEBOOK_URL || "https://www.facebook.com/profile.php?id=61595222673008",
+    // Opens a Messenger chat with the page. If it does not open for you, set this to "" to fall back to the Facebook page link.
+    messengerUrl: process.env.NEXT_PUBLIC_MESSENGER_URL || "https://m.me/61595222673008",
     supportHours: "", // e.g. "Mon–Sat, 9:00 AM – 6:00 PM"
   },
 

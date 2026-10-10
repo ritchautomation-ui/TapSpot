@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { storeConfig } from "@/config/store";
-import { ContactActions } from "./ContactActions";
+import { ContactActions, ContactCards } from "./ContactActions";
 import { Container } from "./ui";
 
 export function ContactSection() {
@@ -11,7 +11,7 @@ export function ContactSection() {
         <p className="mt-5 max-w-lg leading-relaxed text-white/65">Tell us what you do and where you want a tap to take your customers. We’ll help you choose your TapSpot and prepare the links for your setup.</p>
         {storeConfig.serviceArea && <p className="mt-5 text-sm text-white/80">Serving {storeConfig.serviceArea}</p>}
       </div>
-      <div className="space-y-6"><ContactActions dark />
+      <div className="space-y-6"><ContactCards dark /><ContactActions dark />
         <p className="text-sm text-white/60">For product questions, business card profiles and orders for your team.</p>
         <Link href="/contact" className="inline-block py-3 text-sm underline underline-offset-4">All contact details →</Link>
       </div>

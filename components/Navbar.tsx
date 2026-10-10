@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import { Logo } from "./Brand";
 import { useCart } from "./CartProvider";
+import { ThemeToggle } from "./ThemeToggle";
 
 const links = [
   { href: "/", label: "Home" },
@@ -53,6 +54,7 @@ export function Navbar() {
           })}
         </nav>
         <div className="flex items-center gap-2">
+          <ThemeToggle />
           <button type="button" onClick={openDrawer} aria-label={`Open cart, ${count} item${count === 1 ? "" : "s"}`}
             className="relative grid h-11 w-11 place-items-center rounded-full hover:bg-black/5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand">
             <CartIcon />

@@ -76,6 +76,7 @@ export function ProductVisual({ visual, className = "" }: { visual: ProductVisua
           <div className="-ml-[4%] w-[44%] rotate-3"><Standee kind="facebook" /></div>
         </div>
       )}
+      {visual === "custom-sign" && <div className="w-[52%]"><Standee kind="google" /></div>}
       {visual === "business-card" && (
         <div className="relative w-[84%]">
           <div className="w-[88%] -rotate-6 opacity-95"><NfcCard face="back" /></div>

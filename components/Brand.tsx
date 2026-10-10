@@ -2,11 +2,15 @@ import Image from "next/image";
 import Link from "next/link";
 import { storeConfig } from "@/config/store";
 
-/** Horizontal logo (supplied TapSpot asset). */
+/** Horizontal logo (supplied TapSpot asset). Night mode swaps to icon + white wordmark because the logo text is black. */
 export function Logo({ className = "h-9", priority = false }: { className?: string; priority?: boolean }) {
   return (
     <Link href="/" aria-label={`${storeConfig.brandName} home`} className="inline-flex items-center rounded-lg">
-      <Image src="/images/logo.png" alt={storeConfig.brandName} width={256} height={80} sizes="160px" priority={priority} className={`${className} w-auto`} />
+      <Image src="/images/logo.png" alt={storeConfig.brandName} width={256} height={80} sizes="160px" priority={priority} className={`${className} w-auto dark:hidden`} />
+      <span className="hidden items-center gap-2 dark:inline-flex" aria-hidden>
+        <Image src="/images/icon.png" alt="" width={64} height={64} sizes="40px" className={`${className} w-auto`} />
+        <Wordmark className="text-[1.45rem] text-white" />
+      </span>
     </Link>
   );
 }

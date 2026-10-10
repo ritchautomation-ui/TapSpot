@@ -12,7 +12,7 @@ export interface SetupField {
   hostHintMessage?: string;
 }
 
-export type ProductVisualKey = "google" | "facebook" | "bundle" | "business-card";
+export type ProductVisualKey = "google" | "facebook" | "bundle" | "business-card" | "custom-sign";
 
 export interface Product {
   id: string;

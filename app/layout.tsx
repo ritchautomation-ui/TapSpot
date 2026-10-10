@@ -5,6 +5,7 @@ import { storeConfig } from "@/config/store";
 import { CartProvider } from "@/components/CartProvider";
 import { CartDrawer } from "@/components/CartDrawer";
 import { Footer } from "@/components/Footer";
+import { IntroSplash } from "@/components/IntroSplash";
 import { MobileCtaBar } from "@/components/MobileCtaBar";
 import { Navbar } from "@/components/Navbar";
 
@@ -24,10 +25,15 @@ export const metadata: Metadata = {
 
 export const viewport: Viewport = { width: "device-width", initialScale: 1, themeColor: "#0A0A0A" };
 
+/** Runs before first paint: applies the saved/device theme and marks the intro as seen for this session. */
+const bootScript = `(function(){var d=document.documentElement;try{var t=localStorage.getItem("tapspot-theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme: dark)").matches))d.classList.add("dark")}catch(e){}try{if(sessionStorage.getItem("tapspot-intro"))d.setAttribute("data-intro","seen");else sessionStorage.setItem("tapspot-intro","1")}catch(e){}})();`;
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" className={GeistSans.variable}>
+    <html lang="en" className={GeistSans.variable} suppressHydrationWarning>
+      <head><script dangerouslySetInnerHTML={{ __html: bootScript }} /></head>
       <body>
+        <IntroSplash />
         <CartProvider>
           <a href="#main" className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-[60] focus:rounded-full focus:bg-white focus:px-4 focus:py-2">Skip to content</a>
           <Navbar />

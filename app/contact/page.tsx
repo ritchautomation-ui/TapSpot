@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { storeConfig } from "@/config/store";
-import { ContactActions } from "@/components/ContactActions";
+import { ContactActions, ContactCards } from "@/components/ContactActions";
 import { Container } from "@/components/ui";
 import { InquiryComposer } from "@/components/InquiryComposer";
 import { cardPackages, growthBundle } from "@/data/packages";
@@ -17,10 +17,9 @@ export default async function ContactPage({ searchParams }: { searchParams: Prom
     <p className="text-sm font-semibold uppercase tracking-widest text-brand">Contact TapSpot</p>
     <h1 className="mt-4 max-w-3xl text-4xl font-bold tracking-tight sm:text-6xl">Let’s make it easier for customers to find you.</h1>
     <p className="mt-6 max-w-xl text-lg leading-relaxed text-mute">Tell us your business name, the product you’re interested in and how many you need. We’ll help with the next step.</p>
-    <div className="mt-10"><ContactActions /></div>
+    <div className="mt-10 max-w-3xl space-y-5"><ContactCards /><ContactActions /></div>
     <div className="mt-10 max-w-3xl"><InquiryComposer key={offer || "general"} initialMessage={message} /></div>
     <dl className="mt-12 grid max-w-3xl gap-8 border-t border-line pt-8 sm:grid-cols-2">
-      {c.email && <div><dt className="text-sm text-mute">Email</dt><dd className="mt-2 break-words font-semibold"><a href={`mailto:${c.email}`}>{c.email}</a></dd></div>}
       {c.phone && <div><dt className="text-sm text-mute">Phone</dt><dd className="mt-2 font-semibold"><a href={`tel:${c.phone.replace(/[^+\d]/g, "")}`}>{c.phone}</a></dd></div>}
       {storeConfig.serviceArea && <div><dt className="text-sm text-mute">Service area</dt><dd className="mt-2 font-semibold">{storeConfig.serviceArea}</dd></div>}
       {c.supportHours && <div><dt className="text-sm text-mute">Hours</dt><dd className="mt-2 font-semibold">{c.supportHours}</dd></div>}
