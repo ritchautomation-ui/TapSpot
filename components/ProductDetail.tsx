@@ -69,6 +69,14 @@ export function ProductDetail({ product }: { product: Product }) {
           ))}
         </ul>
 
+        {product.id === "custom-branded-sign" && (
+          <div className="mt-8 rounded-3xl bg-brand-soft p-5 sm:p-6">
+            <h2 className="text-lg font-bold">Preview your own design first</h2>
+            <p className="mt-2 text-[15px] text-neutral-700">Upload your logo or artwork and see it on the sign before you order.</p>
+            <ButtonLink href="/customize?product=sign" variant="dark" className="mt-4 w-full sm:w-auto">Customize your sign</ButtonLink>
+          </div>
+        )}
+
         <div className="mt-8 rounded-3xl border border-line p-5 sm:p-6">
           {purchasable ? (
             <>
@@ -91,7 +99,10 @@ export function ProductDetail({ product }: { product: Product }) {
             <div>
               <h2 className="text-lg font-bold">Choose your digital card package</h2>
               <p className="mt-2 text-mute">Explore Starter, Business and Executive options, then message us to arrange your setup.</p>
-              <ButtonLink href="/business-card#card-packages" className="mt-4 w-full sm:w-auto">Explore packages</ButtonLink>
+              <div className="mt-4 flex flex-wrap gap-3">
+                <ButtonLink href="/business-card#card-packages" className="w-full sm:w-auto">Explore packages</ButtonLink>
+                <ButtonLink href="/customize?product=card" variant="outline" className="w-full sm:w-auto">Customize your card design</ButtonLink>
+              </div>
             </div>
           )}
         </div>

@@ -33,3 +33,11 @@ npm run lint, npx tsc --noEmit, npm run build all pass. Browser-tested at 390 an
 - Night mode: moon/sun button in the header (components/ThemeToggle.tsx). Saved in the browser; on a first visit it follows the device setting. `darkMode: "class"` in tailwind.config.ts; the colour remaps are in the "Night mode" block of app/globals.css, so no component had to be rewritten. In night mode the header logo switches to the icon + white wordmark (components/Brand.tsx) because the logo file has black text.
 - Logo intro: components/IntroSplash.tsx + the "Logo intro" block in app/globals.css. Shows once per browser session (about 2.9 s), skipped for visitors who prefer reduced motion, and removes itself with CSS only. To change the length edit the 2.35s delay in `.intro-splash`; to turn it off, remove `<IntroSplash />` from app/layout.tsx.
 - Custom sign mockup now scales cleanly (container units).
+
+## /customize design preview (Custom Sign ₱1,299 + Custom Business Card ₱1,099)
+- app/customize/page.tsx + components/Customizer.tsx: upload PNG/JPG/WEBP (max 10 MB, drag and drop), Fit/Fill, zoom, horizontal/vertical position, rotation, Center design, Reset, optional safe-area guide, live preview on a code-drawn sign or card. Switch between Sign and Business Card at the top (`/customize?product=card` opens the card).
+- config/customize.ts: prices, printable-area ratios and destination options. Sign: Google Review / Facebook / Other link (link required). Card: TapSpot digital profile / Facebook / Other link.
+- "Request this design" opens /contact with a ready-made message (product, quantity, destination link, artwork file name, placement values, instructions). app/contact/page.tsx validates every parameter and falls back to the general message if anything is off.
+- The artwork file is NOT uploaded anywhere (no server/database yet). The customer sends the file on Messenger; /contact shows a "Next step" note saying so.
+- Entry links: Custom Sign product page, NFC Business Card product page and /business-card. Added to sitemap. Mobile CTA bar hidden on /customize.
+- Not changed: the NFC Digital Business Card product still shows packages (From ₱998). ₱1,099 appears only inside /customize.

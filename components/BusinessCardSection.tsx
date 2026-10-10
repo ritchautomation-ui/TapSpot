@@ -2,6 +2,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { cardPackages } from '@/data/packages';
 import { formatPrice } from '@/lib/format';
+import { customizeKinds } from '@/config/customize';
 import { Container } from './ui';
 
 export function ProfilePreview({ variant = 'starter' }: { variant?: string }) {
@@ -30,7 +31,10 @@ export function BusinessCardSection() {
        <h2 className="mt-4 text-4xl font-bold tracking-tight sm:text-5xl">Your profile or business.<br />One tap away.</h2>
        <p className="mt-5 text-lg leading-relaxed text-mute">A physical NFC card opens your digital page on a compatible phone. Share your details, introduce your business and give people a simple way to reach you.</p>
        <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold">{['NFC-enabled card','Mobile-friendly page','Contact & social links'].map(t => <span key={t} className="rounded-full border border-line px-3 py-2">{t}</span>)}</div>
-       <Link href="#card-packages" className="mt-7 inline-block py-3 font-semibold underline underline-offset-4">Choose your card experience ↓</Link>
+       <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2">
+         <Link href="/customize?product=card" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-ink hover:bg-orange-400">Customize your card · {formatPrice(customizeKinds.card.price)}</Link>
+         <Link href="#card-packages" className="inline-block py-3 font-semibold underline underline-offset-4">Choose your card experience ↓</Link>
+       </div>
      </div>
    </div>
    <div id="card-packages" className="mt-20 scroll-mt-24">

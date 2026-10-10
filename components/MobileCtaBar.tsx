@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useCart } from "./CartProvider";
 
 /** Routes where a floating bar would get in the way of forms or the order flow. */
-const HIDDEN_ON = ["/cart", "/checkout", "/contact", "/order-confirmation"];
+const HIDDEN_ON = ["/cart", "/checkout", "/contact", "/customize", "/order-confirmation"];
 
 /** Small-screen shortcut to shop or message, shown once the visitor scrolls past the hero. */
 export function MobileCtaBar() {
