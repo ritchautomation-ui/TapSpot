@@ -49,6 +49,17 @@ export function BusinessCardSection() {
          <Link href={`/samples/${p.id}`} className="mt-2 inline-flex min-h-11 items-center justify-center text-sm font-semibold underline underline-offset-4">View sample</Link>
        </div>
      </article>)}</div>
+     <div className="mt-8">
+       <p className="text-xs font-semibold uppercase tracking-[.18em] text-brand">See a real example</p>
+       <div className="mt-4 grid gap-4 md:grid-cols-2">
+         {[{ href: '/samples/tambayan', name: 'Tambayan Coffee Shop', note: 'A real café in Porac: menu, hours and directions.' }, { href: '/samples/smile-u-love', name: 'Smile U Love Dental Clinic', note: 'A real dental clinic in Porac: services, booking and directions.' }].map(e => (
+           <Link key={e.href} href={e.href} className="flex items-center justify-between gap-4 rounded-3xl border border-line bg-paper p-6 hover:border-brand">
+             <span><span className="block text-xl font-bold tracking-tight">{e.name}</span><span className="mt-1 block text-sm text-mute">{e.note}</span></span>
+             <span aria-hidden className="text-xl font-bold">→</span>
+           </Link>
+         ))}
+       </div>
+     </div>
      <p className="mt-6 text-sm text-mute">Message us to confirm your page content, customization and delivery before ordering.</p>
    </div>
  </Container></section>;
