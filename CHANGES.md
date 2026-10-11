@@ -41,3 +41,8 @@ npm run lint, npx tsc --noEmit, npm run build all pass. Browser-tested at 390 an
 - The artwork file is NOT uploaded anywhere (no server/database yet). The customer sends the file on Messenger; /contact shows a "Next step" note saying so.
 - Entry links: Custom Sign product page, NFC Business Card product page and /business-card. Added to sitemap. Mobile CTA bar hidden on /customize.
 - Not changed: the NFC Digital Business Card product still shows packages (From ₱998). ₱1,099 appears only inside /customize.
+
+## Realistic package samples (/samples/starter, /business, /executive)
+- components/samples/: three fictional demos in a phone frame. Starter = real estate broker (essentials), Business = café (About / Menu / Location tabs, hours, Google review button), Executive = wedding photographer (animated intro, photo gallery, rotating testimonials, packages). All images are code-drawn, no new files needed.
+- app/samples/[slug]/page.tsx: shows the phone beside "What this sample shows", the package price, a contact button and links to the other samples. Buttons only show what would happen on a live page; Save contact downloads a sample .vcf.
+- Removed components/SampleProfile.tsx (replaced). Animations respect reduced motion.
