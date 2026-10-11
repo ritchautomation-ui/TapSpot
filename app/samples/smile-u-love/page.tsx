@@ -10,7 +10,8 @@ export const metadata: Metadata = { title: "Real example: Smile U Love Dental Cl
 
 const shows = [
   "A real clinic’s page, with its real services, phone and location",
-  "A Book an appointment button that opens the clinic’s own online booking",
+  "A booking form on the page itself: the request is saved and both the patient and the clinic get an email",
+  "A staff page with a login, where the clinic confirms or declines each request",
   "Call, Message and Directions buttons that really work",
   "Services in plain language, so patients know what to ask for",
   "Save contact, the clinic’s brand colors and its own logo",
@@ -32,7 +33,7 @@ export default function SmileULovePage() {
           <ul className="mt-3 space-y-2.5">
             {shows.map((s) => <li key={s} className="flex gap-3 text-[15px]"><span className="font-bold text-brand" aria-hidden>✓</span>{s}</li>)}
           </ul>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-mute">Try the buttons. They open the clinic’s real booking page, phone and map. TapSpot does not collect or store any patient information.</p>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-mute">Try the Call, Message and Directions buttons. The booking form is a demo, so requests are not sent to the clinic. Please use test details only.</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
             <ButtonLink href="/contact?offer=business" variant="primary">Ask about Business package</ButtonLink>

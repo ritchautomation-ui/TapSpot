@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { Icon, ICONS, PhoneFrame, PoweredBy, useNotice } from "./SampleShell";
+import { BookingForm } from "@/components/clinic/BookingForm";
 
 /** Real details, taken from the clinic's public Facebook page and Google Maps listing. */
 const clinic = {
@@ -25,7 +26,7 @@ const services: { name: string; detail: string }[] = [
   { name: "Tooth replacement", detail: "3D printed 1-unit Maryland bridge. Message us to know your options." },
 ];
 
-const tabs = ["About", "Services", "Location"] as const;
+const tabs = ["Book", "About", "Services", "Location"] as const;
 type Tab = (typeof tabs)[number];
 
 const PINK = "#D93F78";
@@ -51,6 +52,10 @@ const quick = "flex min-h-16 flex-col items-center justify-center gap-1.5 rounde
 export function RealSmileULove() {
   const { notice, show } = useNotice();
   const [tab, setTab] = useState<Tab>("About");
+  const openBooking = () => {
+    setTab("Book");
+    setTimeout(() => document.getElementById("su-panel")?.scrollIntoView({ behavior: "smooth", block: "start" }), 50);
+  };
 
   return (
     <PhoneFrame notice={notice} bg="#FBF9FC">
@@ -70,10 +75,10 @@ export function RealSmileULove() {
         </div>
 
         <div className="px-5 pt-4">
-          <a href={clinic.booking} target="_blank" rel="noopener noreferrer"
+          <button type="button" onClick={openBooking}
             className="flex min-h-12 w-full items-center justify-center gap-2 rounded-full text-[15px] font-semibold text-white" style={{ backgroundColor: PINK }}>
             <Icon d={ICONS.arrow} className="h-4 w-4" />Book an appointment
-          </a>
+          </button>
           <div className="mt-3 grid grid-cols-3 gap-2.5">
             <a href={`tel:${clinic.phoneTel}`} className={quick}><Icon d={ICONS.phone} className="h-5 w-5" />Call</a>
             <a href={clinic.facebook} target="_blank" rel="noopener noreferrer" className={quick}><Icon d={ICONS.chat} className="h-5 w-5" />Message</a>
@@ -85,7 +90,7 @@ export function RealSmileULove() {
           </button>
         </div>
 
-        <div role="tablist" aria-label="Clinic sections" className="mt-6 flex gap-6 border-b border-[#E6E1EA] px-5">
+        <div role="tablist" aria-label="Clinic sections" className="mt-6 flex gap-5 border-b border-[#E6E1EA] px-5">
           {tabs.map((t) => (
             <button key={t} role="tab" id={`su-tab-${t}`} aria-selected={tab === t} aria-controls="su-panel" type="button" onClick={() => setTab(t)}
               className={`min-h-12 border-b-2 text-[15px] font-semibold transition-colors ${tab === t ? "" : "border-transparent text-[#80808F]"}`}
@@ -94,6 +99,13 @@ export function RealSmileULove() {
         </div>
 
         <div id="su-panel" role="tabpanel" aria-labelledby={`su-tab-${tab}`} className="min-h-[320px] px-5 py-6">
+          {tab === "Book" && (
+            <div>
+              <h2 className="mb-4 text-xl font-bold">Request an appointment</h2>
+              <BookingForm />
+            </div>
+          )}
+
           {tab === "About" && (
             <div>
               <h2 className="text-xl font-bold">Love yourself first.</h2>
@@ -121,8 +133,8 @@ export function RealSmileULove() {
                   </li>
                 ))}
               </ul>
-              <a href={clinic.booking} target="_blank" rel="noopener noreferrer"
-                className="mt-4 flex min-h-12 items-center justify-center rounded-full text-[15px] font-semibold text-white" style={{ backgroundColor: PINK }}>Book an appointment</a>
+              <button type="button" onClick={openBooking}
+                className="mt-4 flex min-h-12 w-full items-center justify-center rounded-full text-[15px] font-semibold text-white" style={{ backgroundColor: PINK }}>Book an appointment</button>
             </div>
           )}
 

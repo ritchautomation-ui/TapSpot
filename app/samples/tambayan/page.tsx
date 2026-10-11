@@ -5,8 +5,8 @@ import { Container, ButtonLink } from "@/components/ui";
 import { cardPackages } from "@/data/packages";
 import { formatPrice } from "@/lib/format";
 
-// Keep this page out of search results until the café owner has confirmed they are happy to be featured publicly.
-export const metadata: Metadata = { title: "Real example: Tambayan Coffee Shop", robots: { index: false, follow: true } };
+// The café has agreed to be featured as a real example.
+export const metadata: Metadata = { title: "Real example: Tambayan Coffee Shop" };
 
 const shows = [
   "A real café’s page, with its real menu, hours and location",
