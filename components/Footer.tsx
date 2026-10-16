@@ -14,7 +14,7 @@ export function Footer() {
             NFC review displays and digital business cards that make it easier for customers to connect with local businesses.
           </p>
         </div>
-        <FooterCol title="Shop" items={[["Products", "/products"], ["Business card", "/business-card"], ["Cart", "/cart"]]} />
+        <FooterCol title="Shop" items={[["Products", "/products"], ["Business card", "/business-card"], ["Cart", "/cart"], ["NFC Link Generator", "/tools/nfc-link-generator"]]} />
         <FooterCol title="Learn" items={[["How it works", "/how-it-works"], ["FAQ", "/faq"], ["Become a reseller", "/resellers"]]} />
         <div>
           <h3 className="text-sm font-semibold text-white">Contact</h3>
