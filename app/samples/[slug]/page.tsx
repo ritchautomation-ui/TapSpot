@@ -12,7 +12,7 @@ export const metadata: Metadata = { title: "TapSpot card sample", robots: { inde
 
 const demo: Record<string, { who: string; shows: string[]; Sample: () => React.JSX.Element }> = {
   starter: {
-    who: "Marco Reyes, a real estate broker",
+    who: "Ritch Viel Sinfuego of TapSpot",
     shows: ["Your photo or initials, name and title", "Save Contact, Call and Email buttons", "Links to your Facebook, Instagram, website and more"],
     Sample: SampleStarter,
   },
@@ -41,16 +41,16 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
       <div className="mt-8 grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-16">
         <div className="lg:sticky lg:top-24">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{item.name} package sample</h1>
-          <p className="mt-4 max-w-md text-lg leading-relaxed text-mute">This is how the page behind your tap could look for {d.who}. It’s an example, so the people and businesses are made up.</p>
+          <p className="mt-4 max-w-md text-lg leading-relaxed text-mute">{slug === "starter" ? "Meet Ritch Viel Sinfuego, the person behind TapSpot. Connect directly for NFC digital business cards, NFC review displays, websites, and online booking systems." : <>This is how the page behind your tap could look for {d.who}. It’s an example, so the people and businesses are made up.</>}</p>
 
           <h2 className="mt-8 text-lg font-bold">What this sample shows</h2>
           <ul className="mt-3 space-y-2.5">
             {d.shows.map((s) => <li key={s} className="flex gap-3 text-[15px]"><span className="font-bold text-brand" aria-hidden>✓</span>{s}</li>)}
           </ul>
-          <p className="mt-6 max-w-md text-sm leading-relaxed text-mute">Try the buttons. They show what would happen on a live page and don’t call or message anyone.</p>
+          <p className="mt-6 max-w-md text-sm leading-relaxed text-mute">{slug === "starter" ? "This is Ritch’s real contact card. Save his details or use the links to call, email, and connect with him directly." : "Try the buttons. They show what would happen on a live page and don’t call or message anyone."}</p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            <ButtonLink href={`/contact?offer=${item.id}`} variant="primary">Ask about {item.name}</ButtonLink>
+            <ButtonLink href={slug === "starter" ? "https://www.facebook.com/profile.php?id=61595222673008" : `/contact?offer=${item.id}`} variant="primary">{slug === "starter" ? "Connect with Ritch" : `Ask about ${item.name}`}</ButtonLink>
           </div>
           <nav aria-label="Other samples" className="mt-8 flex flex-wrap gap-2 text-sm font-semibold">
             {cardPackages.filter((p) => p.id !== slug).map((p) => (
