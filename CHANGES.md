@@ -46,3 +46,8 @@ npm run lint, npx tsc --noEmit, npm run build all pass. Browser-tested at 390 an
 - components/samples/: three fictional demos in a phone frame. Starter = real estate broker (essentials), Business = café (About / Menu / Location tabs, hours, Google review button), Executive = wedding photographer (animated intro, photo gallery, rotating testimonials, packages). All images are code-drawn, no new files needed.
 - app/samples/[slug]/page.tsx: shows the phone beside "What this sample shows", the package price, a contact button and links to the other samples. Buttons only show what would happen on a live page; Save contact downloads a sample .vcf.
 - Removed components/SampleProfile.tsx (replaced). Animations respect reduced motion.
+
+# NFC Link Generator
+- New internal tool at /tools/nfc-link-generator (footer link under Shop). Google Places search → real Place ID → exact `https://search.google.com/local/writereview?placeid=…` URL; Facebook review URL with manual override; Google + Facebook pair; Copy, Open/Test, Reset. See docs/NFC_LINK_GENERATOR_SETUP.md.
+- New env var NEXT_PUBLIC_GOOGLE_MAPS_API_KEY (optional; manual Place ID entry works without it).
+- Added Vitest (`npm test`) and a `typecheck` script. New files: lib/nfc/*, components/tools/NfcLinkGenerator*, app/tools/nfc-link-generator/page.tsx, vitest.config.mts.
