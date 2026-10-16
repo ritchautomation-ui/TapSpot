@@ -3,7 +3,6 @@ import Link from "next/link";
 import { RealTambayan } from "@/components/samples/RealTambayan";
 import { Container, ButtonLink } from "@/components/ui";
 import { cardPackages } from "@/data/packages";
-import { formatPrice } from "@/lib/format";
 
 // The café has agreed to be featured as a real example.
 export const metadata: Metadata = { title: "Real example: Tambayan Coffee Shop" };
@@ -17,7 +16,6 @@ const shows = [
 ];
 
 export default function RealExamplePage() {
-  const business = cardPackages.find((p) => p.id === "business")!;
   return (
     <Container className="py-12 sm:py-16">
       <Link href="/business-card#card-packages" className="text-sm font-semibold">← Back to card packages</Link>
@@ -25,7 +23,7 @@ export default function RealExamplePage() {
         <div className="lg:sticky lg:top-24">
           <p className="text-xs font-semibold uppercase tracking-[.18em] text-brand">Real example</p>
           <h1 className="mt-3 text-4xl font-bold tracking-tight sm:text-5xl">Tambayan Coffee Shop</h1>
-          <p className="mt-3 text-lg font-semibold">Business package style · {formatPrice(business.price)}</p>
+          <p className="mt-3 text-lg font-semibold">Business package style</p>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-mute">This is how the page behind a tap could look for a real café in Porac, Pampanga. The details come from the café’s public Facebook page and Google Maps listing.</p>
 
           <h2 className="mt-8 text-lg font-bold">What this example shows</h2>

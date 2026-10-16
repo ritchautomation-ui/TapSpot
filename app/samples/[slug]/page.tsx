@@ -6,7 +6,6 @@ import { SampleExecutive } from "@/components/samples/SampleExecutive";
 import { SampleStarter } from "@/components/samples/SampleStarter";
 import { Container, ButtonLink } from "@/components/ui";
 import { cardPackages } from "@/data/packages";
-import { formatPrice } from "@/lib/format";
 
 export function generateStaticParams() { return cardPackages.map((p) => ({ slug: p.id })); }
 export const metadata: Metadata = { title: "TapSpot card sample", robots: { index: false, follow: true } };
@@ -42,7 +41,6 @@ export default async function SamplePage({ params }: { params: Promise<{ slug: s
       <div className="mt-8 grid items-start gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,420px)] lg:gap-16">
         <div className="lg:sticky lg:top-24">
           <h1 className="text-4xl font-bold tracking-tight sm:text-5xl">{item.name} package sample</h1>
-          <p className="mt-3 text-3xl font-bold tabular-nums">{formatPrice(item.price)}</p>
           <p className="mt-4 max-w-md text-lg leading-relaxed text-mute">This is how the page behind your tap could look for {d.who}. It’s an example, so the people and businesses are made up.</p>
 
           <h2 className="mt-8 text-lg font-bold">What this sample shows</h2>
