@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Icon, ICONS, PhoneFrame, PoweredBy, useNotice } from "./SampleShell";
 
 const links = [
@@ -14,7 +15,7 @@ export function SampleStarter() {
   return (
     <PhoneFrame notice={notice} bg="#FFFFFF">
       <div className="px-6 pb-4 pt-10 text-[#0A0A0A]">
-        <div className="mx-auto grid h-28 w-28 place-items-center rounded-full bg-[#E9E5DF] text-3xl font-bold text-[#0A0A0A] ring-4 ring-white shadow-md">RV</div>
+        <Image src="/images/ritch-viel-professional.webp" alt="Ritch Viel Sinfuego" width={112} height={112} priority className="mx-auto h-28 w-28 rounded-full object-cover ring-4 ring-white shadow-md" />
         <h1 className="mt-5 text-center text-[26px] font-bold tracking-tight">Ritch Viel Sinfuego</h1>
         <p className="mt-1 text-center text-[15px] text-[#6B6B6B]">NFC &amp; Digital Solutions Specialist</p>
         <p className="text-center text-[15px] text-[#6B6B6B]">TapSpot · Pampanga</p>
@@ -52,3 +53,4 @@ export function SampleStarter() {
     </PhoneFrame>
   );
 }
+
