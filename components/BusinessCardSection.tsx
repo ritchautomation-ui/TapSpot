@@ -1,8 +1,6 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import { cardPackages } from '@/data/packages';
-import { formatPrice } from '@/lib/format';
-import { customizeKinds } from '@/config/customize';
 import { Container } from './ui';
 
 export function ProfilePreview({ variant = 'starter' }: { variant?: string }) {
@@ -32,7 +30,7 @@ export function BusinessCardSection() {
        <p className="mt-5 text-lg leading-relaxed text-mute">A physical NFC card opens your digital page on a compatible phone. Share your details, introduce your business and give people a simple way to reach you.</p>
        <div className="mt-6 flex flex-wrap gap-2 text-xs font-semibold">{['NFC-enabled card','Mobile-friendly page','Contact & social links'].map(t => <span key={t} className="rounded-full border border-line px-3 py-2">{t}</span>)}</div>
        <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-2">
-         <Link href="/customize?product=card" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-ink hover:bg-orange-400">Customize your card · {formatPrice(customizeKinds.card.price)}</Link>
+         <Link href="/customize?product=card" className="inline-flex min-h-12 items-center justify-center rounded-full bg-brand px-6 text-sm font-semibold text-ink hover:bg-orange-400">Customize your card</Link>
          <Link href="#card-packages" className="inline-block py-3 font-semibold underline underline-offset-4">Choose your card experience ↓</Link>
        </div>
      </div>
@@ -43,7 +41,7 @@ export function BusinessCardSection() {
        <div className={`relative h-[310px] overflow-hidden px-5 pt-7 ${p.id === 'business' ? 'bg-brand-soft' : p.id === 'executive' ? 'bg-neutral-900' : 'bg-paper'}`}>
          <ProfilePreview variant={p.id} />
        </div>
-       <div className="flex flex-1 flex-col p-6"><h4 className="text-xl font-bold">{p.name} Package</h4><p className="mt-3 text-3xl font-bold tracking-tight">{formatPrice(p.price)}</p><p className="mt-3 text-sm leading-relaxed text-mute">{p.description}</p>
+       <div className="flex flex-1 flex-col p-6"><h4 className="text-xl font-bold">{p.name} Package</h4><p className="mt-3 text-sm leading-relaxed text-mute">{p.description}</p>
          <ul className="mb-7 mt-5 flex-1 space-y-3 text-sm">{p.features.map(f => <li key={f} className="flex gap-2"><span className="text-brand" aria-hidden>✓</span>{f}</li>)}</ul>
          <Link href={`/contact?offer=${p.id}`} className={`inline-flex min-h-12 items-center justify-center rounded-full text-sm font-semibold ${p.id === 'business' ? 'bg-brand text-ink' : 'bg-ink text-white'}`}>Ask about {p.name} ↗</Link>
          <Link href={`/samples/${p.id}`} className="mt-2 inline-flex min-h-11 items-center justify-center text-sm font-semibold underline underline-offset-4">View sample</Link>
@@ -64,3 +62,4 @@ export function BusinessCardSection() {
    </div>
  </Container></section>;
 }
+
