@@ -3,6 +3,14 @@ import Link from 'next/link';
 import { cardPackages } from '@/data/packages';
 import { Container } from './ui';
 
+const realExamples = [
+  { href: 'https://tapsi-pares-demo.vercel.app', name: 'TapSi Pares 24/7', note: 'Explore a restaurant website in Angeles: menu, location and directions.', links: [] },
+  { href: 'https://melody-private-resort.vercel.app', name: 'Melody Private Resort', note: 'Explore a private resort in Arayat: photos, amenities and a demo booking experience.', links: [] },
+  { href: 'https://smileulove-booking.vercel.app', name: 'Smile U Love Booking System', note: 'Explore the dental appointment website and its booking experience.', links: [{ href: '/samples/smile-u-love', label: 'View clinic page sample' }] },
+  { href: '/samples/tambayan', name: 'Tambayan Coffee Shop', note: 'A café sample in Porac: menu categories, opening hours and directions.', links: [] },
+  { href: 'https://arch-kitchen-premium.vercel.app', name: 'Arch Kitchen', note: 'One café, three website experiences. Compare the Starter, Business and Premium samples.', links: [{ href: 'https://arch-kitchen-starter.vercel.app', label: 'Starter' }, { href: 'https://arch-kitchen-business.vercel.app', label: 'Business' }, { href: 'https://arch-kitchen-premium.vercel.app', label: 'Premium' }] },
+];
+
 export function ProfilePreview({ variant = 'starter' }: { variant?: string }) {
   const dark = variant === 'executive';
   return <div className={`mx-auto w-52 overflow-hidden rounded-[2rem] border-[5px] border-neutral-800 shadow-xl ${dark ? 'bg-neutral-950 text-white' : 'bg-white text-ink'}`} role="img" aria-label={`${variant} sample digital profile`}>
@@ -50,13 +58,17 @@ export function BusinessCardSection() {
      <div className="mt-8">
        <p className="text-xs font-semibold uppercase tracking-[.18em] text-brand">See a real example</p>
        <div className="mt-4 grid gap-4 md:grid-cols-2">
-         {[{ href: '/samples/tambayan', name: 'Tambayan Coffee Shop', note: 'A real café in Porac: menu, hours and directions.' }, { href: '/samples/smile-u-love', name: 'Smile U Love Dental Clinic', note: 'A real dental clinic in Porac: services, booking and directions.' }, { href: 'https://smileulove-booking.vercel.app', name: 'Smile U Love Booking System', note: 'Explore the full appointment website, with staff review and email confirmations.' }, { href: 'https://melody-private-resort.vercel.app', name: 'Melody Private Resort', note: 'Explore a private resort in Arayat: photos, amenities and a demo booking experience.' }].map(e => (
-           <Link key={e.href} href={e.href} className="flex items-center justify-between gap-4 rounded-3xl border border-line bg-paper p-6 hover:border-brand">
-             <span><span className="block text-xl font-bold tracking-tight">{e.name}</span><span className="mt-1 block text-sm text-mute">{e.note}</span></span>
-             <span aria-hidden className="text-xl font-bold">→</span>
-           </Link>
+         {realExamples.map(e => (
+           <article key={e.href} className={`rounded-3xl border border-line bg-paper p-6 hover:border-brand ${e.name === 'Arch Kitchen' ? 'md:col-span-2' : ''}`}>
+             <Link href={e.href} className="flex items-center justify-between gap-4">
+               <span><span className="block text-xl font-bold tracking-tight">{e.name}</span><span className="mt-1 block text-sm text-mute">{e.note}</span></span>
+               <span aria-hidden className="text-xl font-bold">→</span>
+             </Link>
+             {e.links.length > 0 && <nav aria-label={`${e.name} samples`} className="mt-4 flex flex-wrap gap-2">{e.links.map(link => <Link key={link.href} href={link.href} className="inline-flex min-h-11 items-center rounded-full border border-line bg-white px-4 text-sm font-semibold hover:border-brand">{link.label} <span aria-hidden className="ml-2">↗</span></Link>)}</nav>}
+           </article>
          ))}
        </div>
+       <Link href="https://ritch-viel-portfolio.vercel.app" className="mt-5 inline-flex min-h-11 items-center gap-2 text-sm font-semibold underline underline-offset-4">Meet Ritch and explore the full portfolio <span aria-hidden>↗</span></Link>
      </div>
      <p className="mt-6 text-sm text-mute">Message us to confirm your page content, customization and delivery before ordering.</p>
    </div>

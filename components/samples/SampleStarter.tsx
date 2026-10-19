@@ -4,6 +4,7 @@ import Image from "next/image";
 import { Icon, ICONS, PhoneFrame, PoweredBy, useNotice } from "./SampleShell";
 
 const links = [
+  { label: "Portfolio", sub: "Explore Ritch's websites and projects", href: "https://ritch-viel-portfolio.vercel.app", icon: ICONS.globe },
   { label: "Facebook", sub: "Connect with Ritch", href: "https://www.facebook.com/profile.php?id=61595222673008", icon: ICONS.chat },
   { label: "Instagram", sub: "@ritchviel", href: "https://www.instagram.com/ritchviel", icon: ICONS.star },
   { label: "Website", sub: "tapspot-nfc.vercel.app", href: "https://tapspot-nfc.vercel.app", icon: ICONS.globe },
