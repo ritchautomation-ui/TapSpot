@@ -4,6 +4,7 @@ import { cardPackages } from '@/data/packages';
 import { Container } from './ui';
 
 const realExamples = [
+  { href: 'https://lune-nail-atelier.vercel.app', name: 'LUNÉ Nail Atelier', note: 'A luxury nail studio website with a cinematic intro, real before-and-after sliders, a lookbook and a demo booking flow.', links: [{ href: 'https://lune-nail-atelier.vercel.app/booking', label: 'Try the booking demo' }, { href: 'https://lune-nail-atelier.vercel.app/gallery', label: 'Lookbook' }] },
   { href: 'https://tapsi-pares-demo.vercel.app', name: 'TapSi Pares 24/7', note: 'Explore a restaurant website in Angeles: menu, location and directions.', links: [] },
   { href: 'https://melody-private-resort.vercel.app', name: 'Melody Private Resort', note: 'Explore a private resort in Arayat: photos, amenities and a demo booking experience.', links: [] },
   { href: 'https://smileulove-booking.vercel.app', name: 'Smile U Love Booking System', note: 'Explore the dental appointment website and its booking experience.', links: [{ href: '/samples/smile-u-love', label: 'View clinic page sample' }] },
@@ -59,7 +60,7 @@ export function BusinessCardSection() {
        <p className="text-xs font-semibold uppercase tracking-[.18em] text-brand">See a real example</p>
        <div className="mt-4 grid gap-4 md:grid-cols-2">
          {realExamples.map(e => (
-           <article key={e.href} className={`rounded-3xl border border-line bg-paper p-6 hover:border-brand ${e.name === 'Arch Kitchen' ? 'md:col-span-2' : ''}`}>
+           <article key={e.href} className={`rounded-3xl border border-line bg-paper p-6 hover:border-brand ${e.name === 'Arch Kitchen' || e.name === 'LUNÉ Nail Atelier' ? 'md:col-span-2' : ''}`}>
              <Link href={e.href} className="flex items-center justify-between gap-4">
                <span><span className="block text-xl font-bold tracking-tight">{e.name}</span><span className="mt-1 block text-sm text-mute">{e.note}</span></span>
                <span aria-hidden className="text-xl font-bold">→</span>
